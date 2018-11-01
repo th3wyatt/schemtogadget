@@ -49,12 +49,21 @@ public class SchemToGadget {
             HashMap<Integer, Byte> blockMap = new HashMap<>(); //maps the stateIntArray item to a block id
 
             //stores the mapped ints for use in stateIntArray field
+
+
             int count = 0;
             for (byte block: blockList){
                 if (block != 0 && !blocksSeen.contains(block)){
                     blocksSeen.add(block);
                     stateIntList.add(++count);
                     blockMap.put(count, block);
+                }else{
+                    for (int i = 0; i < stateIntList.size(); i++){
+                        if (block == blockMap.get(stateIntList.get(i))){
+                            stateIntList.add(stateIntList.get(i));
+                            break;
+                        }
+                    }
                 }
 
             }
